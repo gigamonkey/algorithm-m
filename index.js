@@ -52,7 +52,7 @@ function ratioToFloat(u, v, k) {
 
 function nextfloat(z) {
   if (z.significand === betaN - 1n) {
-    return makeFloat(betaNm1, z.exporent + 1n);
+    return makeFloat(betaNm1, z.exponent + 1n);
   } else {
     return makeFloat(z.significand + 1n, z.exponent)
   }
