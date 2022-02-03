@@ -6,6 +6,52 @@ const beta = 2n;
 const n = 53n;
 const betaN = beta ** n;
 const betaNm1 = beta ** (n - 1n);
+const max = 2n ** 53n;
+const min = 2n ** 52n;
+
+
+function simpleM(f, e) {
+
+  // Find u, v, and k, such that f * 10^e ~= u/v * 2^k and u/v is in
+  // the range [min, max). Start by setting u, v, and k such that the
+  // equation is trivially satisfied with k = 0 and then adjust u or v
+  // until u/v is in the correct range, adjusting k to maintain the
+  // equality.
+
+  let u;
+  let v;
+  let k = 0n;
+
+  if (e < 0n) {
+    u = f;
+    v = 10n ** -e;
+  } else {
+    u = f * 10n ** e;
+    v = 1n;
+  }
+
+  while (true) {
+
+    let q = u / v; // BigInt division truncates.
+
+    if (q < min) {
+      // q is too small, double the numerator and decrease the
+      // exponent to compensate.
+      u *= 2n;
+      k -= 1n;
+
+    } else if (q >= max) {
+      // q is too big, double the denominator and increse the exponent
+      // to compensate.
+      v *= 2n;
+      k += 1n;
+
+    } else {
+      // q is in range, so make the float.
+      return ratioToFloat(u, v, k);
+    }
+  }
+}
 
 function algorithmM(f, e) {
 

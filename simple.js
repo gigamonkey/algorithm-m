@@ -19,7 +19,7 @@ function algorithmM(f, e) {
 
   let u;
   let v;
-  let k = 0;
+  let k = 0n;
 
   if (e < 0n) {
     u = f;
