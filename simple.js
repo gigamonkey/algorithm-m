@@ -11,7 +11,7 @@ const min = 2n ** 52n;
  */
 function algorithmM(f, e) {
 
-  // Find u, v, and k, such that f * 10^e ~= u/v * 2^k and u/v is in
+  // Find u, v, and k, such that f * 10^e = u/v * 2^k and u/v is in
   // the range [min, max). Start by setting u, v, and k such that the
   // equation is trivially satisfied with k = 0 and then adjust u or v
   // until u/v is in the correct range, adjusting k to maintain the
